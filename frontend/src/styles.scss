@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/scss/flex-gird.scss';
 
+:root {
+    --primary-color: #009EF7;
+    --primary-hover: #33b1f9;
+    --text-color: #111;
+    --white-color: #fff;
+}
+
 html {
     font-size: 62.5%;
     font-family: 'Be Vietnam Pro', sans-serif;
