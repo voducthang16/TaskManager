@@ -1,3 +1,11 @@
 <div class="app">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (newItemEvent)="componentActive($event)"></app-sidebar>
+    <main style="padding: 63px 0 0 264px" [ngSwitch]="true">
+        <div *ngSwitchCase="component == 'users'">
+            <app-list-user></app-list-user>
+        </div>
+        <div *ngSwitchDefault>
+            <app-dashboard></app-dashboard>
+        </div>
+    </main>
 </div>

@@ -13,4 +13,11 @@ export class WebRequestService {
     post(uri: string, payload: Object) {
         return this.http.post(`${this.ROOT_URL}/${uri}`, payload);
     }
+
+    login(email: string, password: string) {
+        return this.http.post(`${this.ROOT_URL}/users/login`, {
+            email,
+            password
+        });
+    }
 }

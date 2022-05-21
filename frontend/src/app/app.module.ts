@@ -10,6 +10,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { LeaderComponent } from './pages/leader/leader.component';
 import { MemberComponent } from './pages/member/member.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ListUserComponent } from './components/users/list-user/list-user.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
         AdminComponent,
         LeaderComponent,
         MemberComponent,
-        SidebarComponent
+        SidebarComponent,
+        DashboardComponent,
+        ListUserComponent,
     ],
     imports: [
         BrowserModule, 
