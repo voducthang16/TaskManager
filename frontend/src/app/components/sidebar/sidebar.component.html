@@ -19,7 +19,7 @@
                     <h6>Dashboard</h6>
                 </a>
             </div>
-            <div class="item project" data-component="users">
+            <div *ngIf="role == 0" class="item project" data-component="list-user">
                 <a class="title">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -27,7 +27,7 @@
                             <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"></rect>
                         </svg>
                     </span>
-                    <h6>Danh sách dự án</h6>
+                    <h6>Danh sách người dùng</h6>
                 </a>
             </div>
             <div class="item " data-component="projects">

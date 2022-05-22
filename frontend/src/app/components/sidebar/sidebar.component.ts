@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
         } else {
             this.role = this.userType.role;
         }
+        this.divideRouterLink(this.role, this.href);
         setTimeout(() => {
             this.activeSidebarItem();
         }, 1)
@@ -38,5 +39,59 @@ export class SidebarComponent implements OnInit {
                 this.newItemEvent.emit(itemElements[index].getAttribute('data-component')!)
             })
         })
+    }
+    permissionElement(href: string) {
+        return `
+            <div style="
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: opacity linear 0.2s;
+                background-color: rgba(0, 0, 0, 0.3);
+            ">
+                <div style="
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    width: 600px;
+                    padding: 32px;
+                    background: var(--white-color);
+                    border-radius: 8px;
+                    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+                ">
+                <h3 style="
+                    align-self: center;
+                    font-size: 2.2rem;
+                    margin-bottom: 16px;
+                ">
+                You do not have permission to access this page</h3>
+                <a href="${href}" style="align-self: center;" type="button" class="btn">OK</a>
+                </div>
+            </div>
+        `
+    }
+    divideRouterLink(role: number, path: string) {
+        let appElement = document.querySelector('.app')!;
+        let directPath: string = '/';
+        if (role === 1) {
+            directPath = '/leader';
+        } else if (role === 2) {
+            directPath = '/member';
+        }
+        if (role !== 0 && path === '/') {
+            appElement.innerHTML = this.permissionElement(directPath)
+        }
+        if (role !== 1 && path === '/leader') {
+            appElement.innerHTML = this.permissionElement(directPath)
+        }
+        if (role !== 2 && path === '/member') {
+            appElement.innerHTML = this.permissionElement(directPath)
+        }
     }
 }
