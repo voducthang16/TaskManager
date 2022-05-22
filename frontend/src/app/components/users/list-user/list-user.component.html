@@ -1,1 +1,39 @@
-<p>list-user works!</p>
+<div class="table">
+    <div class="t-header">
+        <h3 class="title">Danh sách người dùng</h3>
+        <div class="toolbar">
+            <h4 data-role="all" class="role-tab active">Tất cả</h4>
+            <h4 data-role="0" class="role-tab">Quản trị viên</h4>
+            <h4 data-role="1" class="role-tab">Trưởng nhóm</h4>
+            <h4 data-role="2" class="role-tab">Thành viên</h4>
+        </div>
+    </div>
+    <div class="t-body">
+        <table>
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="20%">Tên</th>
+                    <th width="30%">Email</th>
+                    <th width="15%">Khu vực</th>
+                    <th width="15%">Vai trò</th>
+                    <th width="20%">Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let user of listUser; let i = index;">
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td class="bold">{{user.lastName}} {{user.firstName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>Miền {{area(user.area)}}</td>
+                    <td class="bold">{{role(user.role)}}</td>
+                    <td>
+                        <i data-id="62455c95a3b141f9b57d6664" class="fal fa-info"></i>
+                        <i data-id="62455c95a3b141f9b57d6664" class="role-button fal fa-pencil"></i>
+                        <i data-id="62455c95a3b141f9b57d6664" class="delete-button fal fa-times"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

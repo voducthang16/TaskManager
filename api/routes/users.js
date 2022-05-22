@@ -2,11 +2,24 @@ var express = require('express');
 var router = express.Router();
 const Users = require('../model/User');
 
-// Create new user
+// Get all user
 router.post('/', function(req, res, next) {
     const user = new Users(req.body);
     user.save();
     res.send(user)
+})
+
+// Create new user
+router.get('/', function(req, res, next) {
+    Users.find({}, function(err, user) {
+        if (!err) {
+            res.json(user);
+        } else {
+            res.send({
+                exist: false
+            });
+        }
+    })
 })
 
 // Get user information
