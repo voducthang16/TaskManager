@@ -14,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListUserComponent } from './components/users/list-user/list-user.component';
 import { ListProjectAdminComponent } from './components/projects/list-project-admin/list-project-admin.component';
 import { AddProjectComponent } from './components/projects/add-project/add-project.component';
+import { ListTaskAdminComponent } from './components/tasks/list-task-admin/list-task-admin.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { AddProjectComponent } from './components/projects/add-project/add-proje
         ListUserComponent,
         ListProjectAdminComponent,
         AddProjectComponent,
+        ListTaskAdminComponent,
     ],
     imports: [
         BrowserModule, 

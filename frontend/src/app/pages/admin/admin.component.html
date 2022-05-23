@@ -7,6 +7,9 @@
         <div class="body" *ngSwitchCase="component == 'list-project-admin'">
             <app-list-project-admin></app-list-project-admin>
         </div>
+        <div class="body" *ngSwitchCase="component == 'list-task-admin'">
+            <app-list-task-admin></app-list-task-admin>
+        </div>
         <div class="body" *ngSwitchDefault>
             <app-dashboard></app-dashboard>
         </div>

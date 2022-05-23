@@ -1,5 +1,5 @@
 export interface Projects {
-    id: string;
+    _id: string;
     name: string;
     leader: string;
     members: string[];

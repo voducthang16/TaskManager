@@ -6,4 +6,5 @@ export interface Users {
     password: string;
     area: string;
     role: number;
+    status: number;
 }

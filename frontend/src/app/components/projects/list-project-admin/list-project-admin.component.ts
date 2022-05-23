@@ -15,7 +15,7 @@ export class ListProjectAdminComponent implements OnInit {
     // list project
     listProject: Projects[] = [
         {
-            id: '1a',
+            _id: '1a',
             name: 'Quản lý trại heo',
             leader: '1',
             members: [
@@ -28,7 +28,7 @@ export class ListProjectAdminComponent implements OnInit {
             status: 0
         },
         {
-            id: '1b',
+            _id: '1b',
             name: 'Cây xanh công viên',
             leader: '4',
             members: [
@@ -40,7 +40,7 @@ export class ListProjectAdminComponent implements OnInit {
             status: 0
         },
         {
-            id: '1c',
+            _id: '1c',
             name: 'Website Văn hóa Việt',
             leader: '1',
             members: [
@@ -53,7 +53,7 @@ export class ListProjectAdminComponent implements OnInit {
             status: 0
         },
         {
-            id: '1d',
+            _id: '1d',
             name: 'Chăm sóc thú cưng',
             leader: '6',
             members: [
@@ -66,7 +66,7 @@ export class ListProjectAdminComponent implements OnInit {
             status: 0
         },
         {
-            id: '1e',
+            _id: '1e',
             name: 'Quản lý nhà thuốc',
             leader: '4',
             members: [
