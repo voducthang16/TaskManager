@@ -34,6 +34,10 @@ export class ListTaskAdminComponent implements OnInit {
             status: 0,
         }
     ];
+    addTaskStatus: boolean = false;
+    changeTaskStatus() {
+        this.addTaskStatus = !this.addTaskStatus;
+    }
     getNameProject(_id: string) {
         let temp: any;
         temp = this.ListProjectAdminComponent.listProject.find(project => project._id === _id);
@@ -42,6 +46,16 @@ export class ListTaskAdminComponent implements OnInit {
     ngOnInit(): void {
         this.listTask = this.listTask.sort((a, b) => {
             return (a.priority > b.priority) ? -1 : ((b.priority > a.priority) ? 1 : 0);
+        })
+        this.closeProjectClick();
+    }
+    // need fix
+    closeProjectClick() {
+        document.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (target.matches('.overlay-close') || target.matches('.modal.overlay.active')) {
+                this.changeTaskStatus()
+            }
         })
     }
 }

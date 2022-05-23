@@ -1,0 +1,39 @@
+<div class="modal overlay active">
+    <form class="form">
+        <h2 class="title">Thêm nhiệm vụ</h2> <i class="overlay-close fal fa-times"></i>
+        <div class="form-group">
+            <input type="text" id="name" class="form-control" placeholder="Tên">
+        </div>
+        <div class="form-group">
+            <input type="text" id="describe" class="form-control" placeholder="Mô tả">
+        </div>
+        <div class="form-select">
+            <select name="project" id="project">
+                <option hidden>Dự án</option>
+                <option *ngFor="let project of listProject" value="{{project._id}}">
+                    {{project.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-select">
+            <select name="member" id="member">
+                <option hidden>Người thực hiện</option>
+                <option *ngFor="let member of listMember" value="{{member._id}}">
+                    {{member.lastName}} {{member.firstName}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" id="priority" class="form-control" placeholder="Độ ưu tiên">
+        </div>
+        <div class="form-check">
+            <label for="active">
+                <input type="radio" name="status" value="0" id="active">Active
+            </label>
+            <label for="inactive">
+                <input type="radio" name="status" value="1" id="inactive" >Inactive
+            </label>
+        </div>
+        <button style="margin: 0 0 0 auto;" type="button" class="btn size-s">Thêm</button>
+    </form>
+</div>
