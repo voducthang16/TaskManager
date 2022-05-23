@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs/operators';
-
+import { Areas } from './interfaces/areas';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -35,4 +35,18 @@ export class AppComponent {
             }
         });
     }
+    listAreas: Areas[] = [
+        {
+            value: 'north',
+            name: 'Bắc'
+        },
+        {
+            value: 'central',
+            name: 'Trung'
+        },
+        {
+            value: 'south',
+            name: 'Nam'
+        },
+    ]
 }

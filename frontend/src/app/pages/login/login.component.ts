@@ -33,7 +33,13 @@ export class LoginComponent implements OnInit {
                 id: res._id
             }))
             this.userType.next(res.role);
-            this.router.navigate(['/'])
+            if (res.role === 2) {
+                this.router.navigate(['/member'])
+            } else if (res.role === 1) {
+                this.router.navigate(['/leader'])
+            } else {
+                this.router.navigate(['/'])
+            }
         })
     }
 }

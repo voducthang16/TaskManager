@@ -4,6 +4,7 @@ import { Areas } from 'src/app/interfaces/areas';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { LoginComponent } from '../login/login.component';
+import { AppComponent} from '../../app.component';
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
@@ -11,23 +12,13 @@ import { LoginComponent } from '../login/login.component';
     providers: [LoginComponent]
 })
 export class RegisterComponent implements OnInit {
-    constructor(private RegisterService: RegisterService, private router: Router, private user: LoginComponent) {
-
+    constructor(private RegisterService: RegisterService,
+        private router: Router,
+        private user: LoginComponent,
+        private AppComponent: AppComponent
+    ) {
     }
-    listAreas: Areas[] = [
-        {
-            value: 'north',
-            name: 'Bắc'
-        },
-        {
-            value: 'central',
-            name: 'Trung'
-        },
-        {
-            value: 'south',
-            name: 'Nam'
-        },
-    ]
+    listAreas: Areas[] = this.AppComponent.listAreas;
     ngOnInit(): void {
         if (this.user.getUserType()) {
             this.router.navigate(['/'])
