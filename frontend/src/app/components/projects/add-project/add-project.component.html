@@ -7,20 +7,35 @@
         <div class="form-select">
             <select name="leader" id="leader">
                 <option hidden>Chọn trưởng nhóm</option>
-                <option *ngFor="let leader of listLeader">{{leader.lastName}} {{leader.firstName}}</option>
+                <option *ngFor="let leader of listLeader" value="{{leader._id}}">{{leader.lastName}} {{leader.firstName}}</option>
             </select>
         </div>
         <div class="form-group">
-            <input type="text" id="1123" class="form-control" placeholder="Chọn thành viên !!!!">
+            <h4 class="title-non-input">Chọn thành viên</h4>
+            <div class="form-checkbox">
+                <label *ngFor="let member of listMember" class="checkbox-control">
+                    <span class="text">{{member.lastName}} {{member.firstName}}</span>
+                    <input type="checkbox" value="{{member._id}}">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <input type="text" id="price" class="form-control" placeholder="Giá thành">
         </div>
-        <div>
-            Start: <input type="time" name="start" id="start-time">
+        <div class="form-group">
+            <div class="row">
+                <div class="col l-6">
+                    <h4 class="title-non-input">Ngày bắt đầu</h4>
+                    <input type="time" class="form-control form-date" name="start" id="start-date">
+                </div>
+                <div class="col l-6">
+                    <h4 class="title-non-input">Ngày kết thúc</h4>
+                    <input type="time" class="form-control form-date" name="end" id="end-date">
+                </div>
+            </div>
         </div>
         <div>
-            End: <input type="time" name="end" id="end-time">
         </div>
         <div class="form-check">
             <label for="active">

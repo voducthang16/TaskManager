@@ -91,6 +91,78 @@ html {
     }
 }
 
+// fix
+.form-checkbox {
+    margin-top: 12px;
+    .checkbox-control {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        font-size: 1.4rem;
+        user-select: none;
+        padding-left: 40px;
+        margin-top: 12px;
+        line-height: 30px;
+        .text {
+            margin-right: 12px;
+        }
+    }
+    .checkbox-control input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        background: #eee;
+        border-radius: 4px;
+    }
+    .checkbox-control:hover .checkmark {
+        background: #ccc;
+    }
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    .checkbox-control .checkmark:after {
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: translate(-50%,-50%) rotate(45deg);
+    }
+    .checkbox-control input:checked ~ .checkmark {
+        background: #2196F3;
+    }
+    .checkbox-control input:checked ~ .checkmark:after {
+        display: block;
+    }
+}
+
+.form-date {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    margin-top: 16px !important;
+}
+
+.title-non-input {
+    font-size: 1.6rem;
+    padding: 14px 16px;
+    background-color: #F5F8FA;
+    border-radius: 8px;
+    font-weight: 300;
+    color: #5E6278;
+}
+
 .btn {
     display: inline-block;
     min-width: 60px;

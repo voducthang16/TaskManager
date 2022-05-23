@@ -14,9 +14,11 @@ export class AddProjectComponent implements OnInit {
     ) {
     }
     listLeader: Users[] = [];
+    listMember: Users[] = [];
     ngOnInit(): void {
         this.UsersService.getUserList().subscribe((list: any) => {
             this.listLeader = list.filter((user: any) => user.role == 1);
+            this.listMember = list.filter((user: any) => user.role == 2);
         })
     }
 }
