@@ -12,6 +12,8 @@ import { MemberComponent } from './pages/member/member.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListUserComponent } from './components/users/list-user/list-user.component';
+import { ListProjectAdminComponent } from './components/projects/list-project-admin/list-project-admin.component';
+import { AddProjectComponent } from './components/projects/add-project/add-project.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +26,8 @@ import { ListUserComponent } from './components/users/list-user/list-user.compon
         SidebarComponent,
         DashboardComponent,
         ListUserComponent,
+        ListProjectAdminComponent,
+        AddProjectComponent,
     ],
     imports: [
         BrowserModule, 

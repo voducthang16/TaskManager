@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 const Users = require('../model/User');
 
-// Get all user
+// Create new user
 router.post('/', function(req, res, next) {
     const user = new Users(req.body);
     user.save();
     res.send(user)
 })
 
-// Create new user
+// Get all user
 router.get('/', function(req, res, next) {
     Users.find({}, function(err, user) {
         if (!err) {
@@ -22,6 +22,19 @@ router.get('/', function(req, res, next) {
     })
 })
 
+// Get 1 user
+router.get('/:id', async function(req, res) {
+    const id = req.params.id;
+    const data = await Users.find({ _id: id }).exec();
+    if (data) {
+        res.json(data);
+    } else {
+        res.send({
+            exist: false
+        });
+    }
+})
+
 // Get user information
 router.post('/login', async function (req, res, next) {
     const email = req.body.email;
@@ -29,10 +42,6 @@ router.post('/login', async function (req, res, next) {
     const data = await Users.findOne({ email: email, password: password }).exec();
     // exist
     if (data) {
-        // req.session.login = true;
-        // req.session.email = data.email;
-        // req.session.role = data.role;
-        // req.session.userId = data._id;
         res.send(data);
     } else {
         res.send({

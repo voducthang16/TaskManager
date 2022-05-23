@@ -27,10 +27,10 @@
                             <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"></rect>
                         </svg>
                     </span>
-                    <h6>Danh sách người dùng</h6>
+                    <h6>Người dùng</h6>
                 </a>
             </div>
-            <div class="item " data-component="projects">
+            <div *ngIf="role == 0" class="item" data-component="list-project-admin">
                 <a class="title">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -39,7 +39,7 @@
                             <path opacity="0.3" d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z" fill="currentColor"></path>
                         </svg>
                     </span>
-                    <h6>Phòng học</h6>
+                    <h6>Dự án</h6>
                 </a>
             </div>
             <div class="item ">
