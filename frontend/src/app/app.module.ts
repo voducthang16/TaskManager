@@ -17,6 +17,7 @@ import { AddProjectComponent } from './components/projects/add-project/add-proje
 import { ListTaskAdminComponent } from './components/tasks/list-task-admin/list-task-admin.component';
 import { AddTaskComponent } from './components/tasks/add-task/add-task.component';
 import { ProjectDetailComponent } from './components/projects/project-detail/project-detail.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { ProjectDetailComponent } from './components/projects/project-detail/pro
         ListTaskAdminComponent,
         AddTaskComponent,
         ProjectDetailComponent,
+        HeaderComponent,
     ],
     imports: [
         BrowserModule, 
