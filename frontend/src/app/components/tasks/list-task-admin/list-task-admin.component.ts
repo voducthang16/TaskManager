@@ -32,6 +32,15 @@ export class ListTaskAdminComponent implements OnInit {
             memberId: '2',
             priority: 5,
             status: 0,
+        },
+        {
+            _id: '1ac',
+            projectId: '1a',
+            name: 'Lên kế hoạch',
+            describe: 'Lên kế hoạch cho dự án',
+            memberId: '4',
+            priority: 1,
+            status: 0,
         }
     ];
     addTaskStatus: boolean = false;

@@ -9,6 +9,8 @@ import { Projects } from 'src/app/interfaces/projects';
 export class ListProjectAdminComponent implements OnInit {
     constructor() {}
     addProjectStatus: boolean = false;
+    projectDetailStatus: boolean = false;
+    projectId: string = '';
     ngOnInit(): void {
         this.closeProjectClick()
     };
@@ -85,9 +87,16 @@ export class ListProjectAdminComponent implements OnInit {
     closeProjectClick() {
         document.addEventListener('click', e => {
             const target = e.target as HTMLElement;
-            if (target.matches('.overlay-close') || target.matches('.modal.overlay.active')) {
-                this.addProjectClick()
+            if (target.matches('.overlay-close.add') || target.matches('.modal.overlay.active.add')) {
+                this.addProjectClick();
+            }
+            if (target.matches('.overlay-close.detail') || target.matches('.modal.overlay.active.detail')) {
+                this.projectDetailStatus = !this.projectDetailStatus;
             }
         })
+    }
+    getProjectId(e: any) {
+        this.projectDetailStatus = !this.projectDetailStatus;
+        this.projectId = e.target.attributes.id.nodeValue;
     }
 }
