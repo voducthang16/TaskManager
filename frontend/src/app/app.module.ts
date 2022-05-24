@@ -18,6 +18,7 @@ import { ListTaskAdminComponent } from './components/tasks/list-task-admin/list-
 import { AddTaskComponent } from './components/tasks/add-task/add-task.component';
 import { ProjectDetailComponent } from './components/projects/project-detail/project-detail.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { HeaderComponent } from './components/header/header.component';
     imports: [
         BrowserModule, 
         AppRoutingModule, 
-        HttpClientModule
+        HttpClientModule,
+        FormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

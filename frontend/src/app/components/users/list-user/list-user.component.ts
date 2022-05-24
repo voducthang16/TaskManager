@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Users } from '../../../interfaces/users'
-
+import { ShareDataService } from 'src/app/share-data.service';
 @Component({
     selector: 'app-list-user',
     templateUrl: './list-user.component.html',
@@ -9,7 +9,11 @@ import { Users } from '../../../interfaces/users'
 })
 export class ListUserComponent implements OnInit {
     listUser: Users[] = [];
-    constructor(private UsersService: UsersService) {
+    listUserTemp: Users[] = [];
+    // receive component & data from header
+    component: string | undefined;
+    data: string = '';
+    constructor(private UsersService: UsersService, private Data: ShareDataService) {
 
     }
     area(value: string) {
@@ -31,8 +35,20 @@ export class ListUserComponent implements OnInit {
         }
     }
     ngOnInit() {
+        this.Data.currentComponent.subscribe(component => this.component = component);
         this.UsersService.getUserList().subscribe((list: any) => {
             this.listUser = list;
+            this.listUserTemp = list;
         })
+    }
+    // run when value of component is changed
+    ngDoCheck() {
+        if (this.component == 'list-user') {
+            this.Data.currentData.subscribe(data => this.data = data);
+        }
+        this.filterTask()
+    }
+    filterTask() {
+        this.listUser = this.listUserTemp.filter(user => user.firstName.toLowerCase( ).includes(this.data.toLowerCase( )))
     }
 }

@@ -1,7 +1,7 @@
 <div class="header">
     <div class="col l-6">
         <form action="search" class="search" id="search-form">
-            <input class="search-control" type="text" name="keyword" id="search" placeholder="Tìm kiếm..." required="">
+            <input class="search-control" name="keyword" [(ngModel)]="keyword" (keyup)="getKeyword(keyword)"  type="text" id="search" placeholder="Tìm kiếm..." required="">
             <i class="search-btn fal fa-search search-icon"></i>
         </form>
     </div>

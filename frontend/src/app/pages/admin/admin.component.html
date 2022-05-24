@@ -1,7 +1,7 @@
 <div class="app">
-    <app-sidebar (newItemEvent)="componentActive($event)"></app-sidebar>
+    <app-sidebar (componentActive)="componentActive($event)"></app-sidebar>
     <main style="padding: 63px 0 0 264px" [ngSwitch]="true">
-        <app-header></app-header>
+        <app-header [component]="component"></app-header>
         <div class="body" *ngSwitchCase="component == 'list-user'">
             <app-list-user></app-list-user>
         </div>

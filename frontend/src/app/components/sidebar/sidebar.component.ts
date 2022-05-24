@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
             this.activeSidebarItem();
         }, 1)
     }
-    @Output () newItemEvent = new EventEmitter<string>();
+    @Output () componentActive = new EventEmitter<string>();
     activeSidebarItem() {
         let itemElements = document.querySelectorAll('.item');
         let defaultItem: HTMLElement;
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
                 defaultItem = document.querySelector('.item.default-active')!;
                 defaultItem.classList.remove('default-active');
                 itemElements[index].classList.add('default-active');
-                this.newItemEvent.emit(itemElements[index].getAttribute('data-component')!)
+                this.componentActive.emit(itemElements[index].getAttribute('data-component')!)
             })
         })
     }
