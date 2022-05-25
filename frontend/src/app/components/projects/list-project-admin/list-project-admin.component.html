@@ -16,9 +16,9 @@
                     <th width="5%">#</th>
                     <th width="20%">Tên</th>
                     <th width="15%">Trưởng nhóm</th>
-                    <th width="13%">Thành viên</th>
+                    <th width="16%">Thành viên</th>
                     <th width="22%">Thời gian</th>
-                    <th width="15%">Tiền</th>
+                    <th width="12%">Tiền</th>
                     <th width="10%">Actions</th>
                 </tr>
             </thead>
@@ -26,8 +26,8 @@
                 <tr>
                     <td>{{i+1}}</td>
                     <td class="bold">{{project.name}}</td>
-                    <td>{{project.leader}}</td>
-                    <td>{{project.members}}</td>
+                    <td>{{project.leader.lastName}} {{project.leader.firstName}}</td>
+                    <td style="line-height: 1.2" [innerHTML]="renderMembers(project.members)"></td>
                     <td class="bold">{{project.startDate | date:'dd/MM/Y'}} - {{project.endDate | date:'dd/MM/Y'}}</td>
                     <td>{{project.price | currency:'VND'}}</td>
                     <td>

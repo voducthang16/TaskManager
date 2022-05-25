@@ -6,6 +6,11 @@ import { WebRequestService } from '../web-request.service';
 })
 export class ProjectsService {
     constructor(private WebRequestService: WebRequestService) {}
+
+    getAllProject() {
+        return this.WebRequestService.get('projects');
+    }
+
     createProject(name: string, leader: string, members: string[], 
             price: number, startDate: string, endDate: string, status: number) {
         return this.WebRequestService.post('projects', {

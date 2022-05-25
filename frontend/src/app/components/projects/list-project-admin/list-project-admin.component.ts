@@ -1,89 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Projects } from 'src/app/interfaces/projects';
-
+import { ProjectsService } from 'src/app/services/projects.service';
+import { Users } from 'src/app/interfaces/users';
 @Component({
     selector: 'app-list-project-admin',
     templateUrl: './list-project-admin.component.html',
     styleUrls: ['./list-project-admin.component.scss']
 })
 export class ListProjectAdminComponent implements OnInit {
-    constructor() {}
+    constructor(private ProjectsService: ProjectsService) {}
     addProjectStatus: boolean = false;
     projectDetailStatus: boolean = false;
     projectId: string = '';
+    // list project
+    listProject: Projects[] = [];
+    listProjectTemp: Projects[] = [];
     ngOnInit(): void {
         this.closeProjectClick()
+        this.ProjectsService.getAllProject().subscribe((list: any) => {
+            this.listProject = list;
+            this.listProjectTemp = list;
+        })
     };
-    // list project
-    listProject: Projects[] = [
-        {
-            _id: '1a',
-            name: 'Quản lý trại heo',
-            leader: '1',
-            members: [
-                '2',
-                '3'
-            ],
-            price: 5000000,
-            startDate: '2022-05-23',
-            endDate: '2022-06-23',
-            status: 0
-        },
-        {
-            _id: '1b',
-            name: 'Cây xanh công viên',
-            leader: '4',
-            members: [
-                '3'
-            ],
-            price: 10000000,
-            startDate: '2022-05-23',
-            endDate: '2022-07-17',
-            status: 0
-        },
-        {
-            _id: '1c',
-            name: 'Website Văn hóa Việt',
-            leader: '1',
-            members: [
-                '5',
-                '3'
-            ],
-            price: 6000000,
-            startDate: '2022-05-23',
-            endDate: '2022-08-14',
-            status: 0
-        },
-        {
-            _id: '1d',
-            name: 'Chăm sóc thú cưng',
-            leader: '6',
-            members: [
-                '7',
-                '5'
-            ],
-            price: 20000000,
-            startDate: '2022-04-23',
-            endDate: '2022-05-25',
-            status: 0
-        },
-        {
-            _id: '1e',
-            name: 'Quản lý nhà thuốc',
-            leader: '4',
-            members: [
-                '2',
-                '7'
-            ],
-            price: 9000000,
-            startDate: '2022-05-23',
-            endDate: '2022-06-13',
-            status: 0
-        }
-    ];
+    // show modal add project
     addProjectClick() {
         this.addProjectStatus = !this.addProjectStatus;
     }
+    renderMembers(members: Users[]) {
+        let html: string = '';
+        members.forEach((member) => {
+            html += `<h2>${member.lastName} ${member.firstName}</h2>`
+        })
+        return html;
+    }
+    // close modal add project
     closeProjectClick() {
         document.addEventListener('click', e => {
             const target = e.target as HTMLElement;
@@ -95,6 +45,8 @@ export class ListProjectAdminComponent implements OnInit {
             }
         })
     }
+
+    // pass project id to child components
     getProjectId(e: any) {
         this.projectDetailStatus = !this.projectDetailStatus;
         this.projectId = e.target.attributes.id.nodeValue;
