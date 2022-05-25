@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Users } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
 import { ProjectsService } from 'src/app/services/projects.service';
@@ -11,8 +11,8 @@ export class AddProjectComponent implements OnInit {
     constructor(
         private UsersService: UsersService,
         private ProjectsService: ProjectsService
-    ) {
-    }
+    ) { }
+    @Output () hideModal = new EventEmitter<boolean>();
     listLeader: Users[] = [];
     listMember: Users[] = [];
     ngOnInit(): void {
@@ -36,7 +36,8 @@ export class AddProjectComponent implements OnInit {
         const status =  <HTMLInputElement>document.querySelector('input[name="status"]:checked');
         return this.ProjectsService.createProject(name.value, leader.value, members, +price.value, startDate.value, endDate.value, +status.value)
         .subscribe(() => {
-            console.log('Create Project Successfully')
+            alert('Create Project Successfully');
+            this.hideModal.emit(true);
         })
     }
 }

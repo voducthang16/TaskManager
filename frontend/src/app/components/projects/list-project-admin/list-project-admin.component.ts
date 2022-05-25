@@ -16,12 +16,21 @@ export class ListProjectAdminComponent implements OnInit {
     listProject: Projects[] = [];
     listProjectTemp: Projects[] = [];
     ngOnInit(): void {
-        this.closeProjectClick()
+        this.closeProjectClick();
+        this.getAllProject();
+    };
+    getAllProject() {
         this.ProjectsService.getAllProject().subscribe((list: any) => {
             this.listProject = list;
             this.listProjectTemp = list;
         })
-    };
+    }
+    hideModal(status: boolean) {
+        if (status) {
+            this.addProjectClick();
+            this.getAllProject();
+        }
+    }
     // show modal add project
     addProjectClick() {
         this.addProjectStatus = !this.addProjectStatus;

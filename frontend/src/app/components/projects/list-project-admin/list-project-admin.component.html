@@ -42,7 +42,7 @@
 </div>
 
 <div *ngIf="addProjectStatus">
-    <app-add-project></app-add-project>
+    <app-add-project (hideModal)="hideModal($event)"></app-add-project>
 </div>
 
 <div *ngIf="projectDetailStatus">
