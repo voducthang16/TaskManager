@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Projects } from 'src/app/interfaces/projects';
 import { ProjectsService } from 'src/app/services/projects.service';
+import { ShareDataService } from 'src/app/share-data.service';
 import { Users } from 'src/app/interfaces/users';
 @Component({
     selector: 'app-list-project-admin',
@@ -8,7 +9,13 @@ import { Users } from 'src/app/interfaces/users';
     styleUrls: ['./list-project-admin.component.scss']
 })
 export class ListProjectAdminComponent implements OnInit {
-    constructor(private ProjectsService: ProjectsService) {}
+    constructor(
+        private ProjectsService: ProjectsService, 
+        private Data: ShareDataService) 
+    {}
+    // receive component & data from header
+    data: string = '';
+    component: string | undefined;
     addProjectStatus: boolean = false;
     projectDetailStatus: boolean = false;
     projectId: string = '';
@@ -18,7 +25,18 @@ export class ListProjectAdminComponent implements OnInit {
     ngOnInit(): void {
         this.closeProjectClick();
         this.getAllProject();
+        this.Data.currentComponent.subscribe(component => this.component = component);
     };
+    // run when value of component is changed
+    ngDoCheck() {
+        if (this.component == 'list-project-admin') {
+            this.Data.currentData.subscribe(data => this.data = data);
+        }
+        this.filterTask()
+    }
+    filterTask() {
+        this.listProject = this.listProjectTemp.filter(project => project.name.toLowerCase( ).includes(this.data.toLowerCase( )))
+    }
     getAllProject() {
         this.ProjectsService.getAllProject().subscribe((list: any) => {
             this.listProject = list;
