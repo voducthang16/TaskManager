@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{i+1}}</td>
                     <td style="line-height: 1.2" class="bold">{{task.name}}</td>
-                    <td>{{getNameProject(task.projectId)}}</td>
+                    <td></td>
                     <td style="line-height: 1.2">{{task.describe}}</td>
                     <td style="text-align: center">{{task.memberId}}</td>
                     <td>{{task.priority}}</td>
@@ -42,5 +42,5 @@
 </div>
 
 <div *ngIf="addTaskStatus">
-    <app-add-task></app-add-task>
+    <app-add-task (hideModal)="hideModal($event)"></app-add-task>
 </div>
