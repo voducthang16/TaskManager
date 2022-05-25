@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ListProjectAdminComponent } from '../list-project-admin/list-project-admin.component';
 import { Users } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
+import { ProjectsService } from 'src/app/services/projects.service';
 @Component({
     selector: 'app-add-project',
     templateUrl: './add-project.component.html',
@@ -9,8 +9,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class AddProjectComponent implements OnInit {
     constructor(
-        private ListProjectAdminComponent: ListProjectAdminComponent,
-        private UsersService: UsersService
+        private UsersService: UsersService,
+        private ProjectsService: ProjectsService
     ) {
     }
     listLeader: Users[] = [];
@@ -19,6 +19,24 @@ export class AddProjectComponent implements OnInit {
         this.UsersService.getUserList().subscribe((list: any) => {
             this.listLeader = list.filter((user: any) => user.role == 1);
             this.listMember = list.filter((user: any) => user.role == 2);
+        })
+    }
+    createProject(e: any) {
+        e.preventDefault();
+        const name = <HTMLInputElement>document.querySelector('#name');
+        const leader =  <HTMLSelectElement>document.querySelector('#leader');
+        const memberSelected: any = document.querySelectorAll('input[type="checkbox"]:checked');
+        let members: string[] = [];
+        [...memberSelected].forEach((input: any) => {
+            members.push(input.value);
+        })
+        const price = <HTMLInputElement>document.querySelector('#price');
+        const startDate = <HTMLInputElement>document.querySelector('#start-date');
+        const endDate = <HTMLInputElement>document.querySelector('#end-date');
+        const status =  <HTMLInputElement>document.querySelector('input[name="status"]:checked');
+        return this.ProjectsService.createProject(name.value, leader.value, members, +price.value, startDate.value, endDate.value, +status.value)
+        .subscribe(() => {
+            console.log('Create Project Successfully')
         })
     }
 }

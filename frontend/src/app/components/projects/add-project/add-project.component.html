@@ -27,15 +27,13 @@
             <div class="row">
                 <div class="col l-6">
                     <h4 class="title-non-input">Ngày bắt đầu</h4>
-                    <input type="time" class="form-control form-date" name="start" id="start-date">
+                    <input type="date" class="form-control form-date" name="start" id="start-date">
                 </div>
                 <div class="col l-6">
                     <h4 class="title-non-input">Ngày kết thúc</h4>
-                    <input type="time" class="form-control form-date" name="end" id="end-date">
+                    <input type="date" class="form-control form-date" name="end" id="end-date">
                 </div>
             </div>
-        </div>
-        <div>
         </div>
         <div class="form-check">
             <label for="active">
@@ -45,6 +43,6 @@
                 <input type="radio" name="status" value="1" id="inactive" >Inactive
             </label>
         </div>
-        <button style="margin: 0 0 0 auto;" type="button" class="btn size-s">Thêm</button>
+        <button style="margin: 0 0 0 auto;" type="button" class="btn size-s" (click)="createProject($event)">Thêm</button>
     </form>
 </div>
