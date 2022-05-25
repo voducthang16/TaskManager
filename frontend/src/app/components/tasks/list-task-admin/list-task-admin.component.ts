@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tasks } from 'src/app/interfaces/tasks';
 import { ShareDataService } from 'src/app/share-data.service';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
     selector: 'app-list-task-admin',
@@ -12,7 +13,8 @@ export class ListTaskAdminComponent implements OnInit {
     data: string = '';
     component: string | undefined;
     constructor(
-        private Data: ShareDataService
+        private Data: ShareDataService,
+        private TasksService: TasksService
     ) {
     }
     listTaskTemp: Tasks[] = [];
@@ -24,16 +26,15 @@ export class ListTaskAdminComponent implements OnInit {
     hideModal(status: boolean) {
         if (status) {
             this.changeTaskStatus();
-            // this.getAllProject();
+            this.getAllTasks();
         }
     }
     ngOnInit(): void {
         this.listTaskTemp = this.listTask;
         // receive component from header
         this.Data.currentComponent.subscribe(component => this.component = component);
-        // this.listTask = this.listTaskTemp.sort((a, b) => {
-        //     return (a.priority > b.priority) ? -1 : ((b.priority > a.priority) ? 1 : 0);
-        // })
+
+        this.getAllTasks();
         this.closeTaskClick();
     }
     // run when value of component is changed
@@ -41,11 +42,20 @@ export class ListTaskAdminComponent implements OnInit {
         if (this.component == 'list-task-admin') {
             this.Data.currentData.subscribe(data => this.data = data);
         }
-        this.filterTask()
+        // this.filterTask()
     }
-    filterTask() {
-        this.listTask = this.listTaskTemp.filter(task => task.name.toLowerCase( ).includes(this.data.toLowerCase( )))
+
+    getAllTasks() {
+        this.TasksService.getAllTasks().subscribe((list: any) => {
+            this.listTask = list.sort((a: any, b: any) => {
+                return (a.priority > b.priority) ? -1 : ((b.priority > a.priority) ? 1 : 0);
+            });
+            this.listTaskTemp = this.listTask;
+        })
     }
+    // filterTask() {
+    //     this.listTask = this.listTaskTemp.filter(task => task.name.toLowerCase( ).includes(this.data.toLowerCase( )))
+    // }
     // need fix
     closeTaskClick() {
         document.addEventListener('click', e => {

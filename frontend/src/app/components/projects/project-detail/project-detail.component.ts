@@ -20,6 +20,6 @@ export class ProjectDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.project = this.ListProjectAdminComponent.listProject.filter(project => project._id == this.id);
-        this.task = this.ListTaskAdminComponent.listTask.filter(task => task.projectId == this.id);
+        // this.task = this.ListTaskAdminComponent.listTask.filter(task => task.projectId == this.id);
     }
 }

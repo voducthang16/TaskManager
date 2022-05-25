@@ -36,7 +36,7 @@ export class AddTaskComponent implements OnInit {
         const member =  <HTMLSelectElement>document.querySelector('#member');
         const priority = <HTMLInputElement>document.querySelector('#priority');
         const status =  <HTMLInputElement>document.querySelector('input[name="status"]:checked');
-        return this.TasksService.createTask(name.value, describe.value, project.value, member.value, +priority.value, +status.value)
+        return this.TasksService.createTask(project.value, name.value, describe.value, member.value, +priority.value, +status.value)
         .subscribe(() => {
             alert('Create Task Successfully');
             this.hideModal.emit(true);
