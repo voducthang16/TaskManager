@@ -19,6 +19,7 @@ import { AddTaskComponent } from './components/tasks/add-task/add-task.component
 import { ProjectDetailComponent } from './components/projects/project-detail/project-detail.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
         AddTaskComponent,
         ProjectDetailComponent,
         HeaderComponent,
+        AddUserComponent,
     ],
     imports: [
         BrowserModule, 

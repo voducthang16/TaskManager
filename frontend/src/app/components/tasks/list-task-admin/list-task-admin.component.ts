@@ -42,7 +42,7 @@ export class ListTaskAdminComponent implements OnInit {
         if (this.component == 'list-task-admin') {
             this.Data.currentData.subscribe(data => this.data = data);
         }
-        // this.filterTask()
+        this.filterTask()
     }
 
     getAllTasks() {
@@ -53,9 +53,9 @@ export class ListTaskAdminComponent implements OnInit {
             this.listTaskTemp = this.listTask;
         })
     }
-    // filterTask() {
-    //     this.listTask = this.listTaskTemp.filter(task => task.name.toLowerCase( ).includes(this.data.toLowerCase( )))
-    // }
+    filterTask() {
+        this.listTask = this.listTaskTemp.filter(task => task.name.toLowerCase( ).includes(this.data.toLowerCase( )))
+    }
     // need fix
     closeTaskClick() {
         document.addEventListener('click', e => {

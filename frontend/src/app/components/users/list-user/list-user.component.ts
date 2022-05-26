@@ -13,6 +13,7 @@ export class ListUserComponent implements OnInit {
     // receive component & data from header
     component: string | undefined;
     data: string = '';
+    statusModal: boolean = false;
     constructor(private UsersService: UsersService, private Data: ShareDataService) {
 
     }
@@ -31,11 +32,18 @@ export class ListUserComponent implements OnInit {
         } else if (value == 1) {
             return 'Trưởng nhóm'
         } else {
-            return 'Thành viên'
+            return 'Nhân viên'
         }
+    }
+    changeStatus() {
+        this.statusModal = !this.statusModal;
     }
     ngOnInit() {
         this.Data.currentComponent.subscribe(component => this.component = component);
+        this.getAllUser();
+        this.closeModalClick();
+    }
+    getAllUser() {
         this.UsersService.getUserList().subscribe((list: any) => {
             this.listUser = list;
             this.listUserTemp = list;
@@ -50,5 +58,19 @@ export class ListUserComponent implements OnInit {
     }
     filterTask() {
         this.listUser = this.listUserTemp.filter(user => user.firstName.toLowerCase( ).includes(this.data.toLowerCase( )))
+    }
+    hideModal(status: boolean) {
+        if (status) {
+            this.changeStatus();
+            this.getAllUser();
+        }
+    }
+    closeModalClick() {
+        document.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (target.matches('.overlay-close') || target.matches('.modal.overlay.active')) {
+                this.changeStatus()
+            }
+        })
     }
 }

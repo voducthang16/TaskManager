@@ -9,13 +9,14 @@ export class RegisterService {
 
     }
 
-    createUser(lastName: string, firstName: string, email: string, password: string, area: string) {
+    createUser(lastName: string, firstName: string, email: string, password: string, area: string, role: number = 2, status: number = 0) {
         return this.WebRequestService.post('users', {
             lastName,
             firstName,
             email,
             password,
-            area
+            area,
+            status
         })
     }
 }
