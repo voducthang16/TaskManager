@@ -42,6 +42,7 @@ export class ListUserComponent implements OnInit {
         this.Data.currentComponent.subscribe(component => this.component = component);
         this.getAllUser();
         this.closeModalClick();
+        // this.filterRole();
     }
     getAllUser() {
         this.UsersService.getUserList().subscribe((list: any) => {
@@ -54,9 +55,9 @@ export class ListUserComponent implements OnInit {
         if (this.component == 'list-user') {
             this.Data.currentData.subscribe(data => this.data = data);
         }
-        this.filterTask()
+        this.filterName()
     }
-    filterTask() {
+    filterName() {
         this.listUser = this.listUserTemp.filter(user => user.firstName.toLowerCase( ).includes(this.data.toLowerCase( )))
     }
     hideModal(status: boolean) {
@@ -73,4 +74,19 @@ export class ListUserComponent implements OnInit {
             }
         })
     }
+    // filterRole() {
+    //     const nodeList = document.querySelectorAll('.role-tab');
+    //     nodeList.forEach(node => {
+    //         node.addEventListener('click', e => {
+    //             const target = e.target as any;
+    //             const role = target!.getAttribute('data-role')!; 
+    //             if (Number(role) >= 0) {
+    //                 this.listUser = this.listUserTemp.filter(user => user.role == role);
+    //             } else {
+    //                 this.listUser = this.listUserTemp;
+    //             }
+    //             console.log(this.listUser);
+    //         })
+    //     })
+    // }
 }

@@ -10,4 +10,8 @@ export class UsersService {
     getUserList() {
         return this.WebRequestService.get('users');
     }
+
+    getOneUser(id: string) {
+        return this.WebRequestService.get(`users/${id}`)
+    }
 }

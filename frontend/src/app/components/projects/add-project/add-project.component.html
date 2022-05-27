@@ -12,8 +12,8 @@
         </div>
         <div class="form-group">
             <h4 class="title-non-input">Chọn thành viên</h4>
-            <div class="form-checkbox">
-                <label *ngFor="let member of listMember" class="checkbox-control">
+            <div style="margin-left: 0; margin-right: 0" class="row form-checkbox">
+                <label *ngFor="let member of listMember" class="col l-6 checkbox-control">
                     <span class="text">{{member.lastName}} {{member.firstName}}</span>
                     <input type="checkbox" value="{{member._id}}">
                     <span class="checkmark"></span>

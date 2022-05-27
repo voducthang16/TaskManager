@@ -20,6 +20,7 @@ import { ProjectDetailComponent } from './components/projects/project-detail/pro
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
+import { InfoUserComponent } from './components/users/info-user/info-user.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { AddUserComponent } from './components/users/add-user/add-user.component
         ProjectDetailComponent,
         HeaderComponent,
         AddUserComponent,
+        InfoUserComponent,
     ],
     imports: [
         BrowserModule, 

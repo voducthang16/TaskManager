@@ -1,0 +1,24 @@
+<div class="table">
+    <div class="t-header">
+        <h3 class="title">Thông tin người dùng</h3>
+    </div>
+    <div class="t-body">
+        <div class="row">
+            <div class="col l-4">
+                <img src="assets/img/default.jpg" alt="Default Avatar">
+            </div>
+            <div class="col l-3">
+                <h4>Họ tên</h4>
+                <h4>Email</h4>
+                <h4>Khu vực</h4>
+                <h4>Vai trò</h4>
+            </div>
+            <div class="col l-5">
+                <h4>{{userInfo.lastName}} {{userInfo.firstName}}</h4>
+                <h4>{{userInfo.email}}</h4>
+                <h4>Miền {{area(userInfo.area)}}</h4>
+                <h4>{{role(userInfo.role)}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
