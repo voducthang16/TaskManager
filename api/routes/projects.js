@@ -9,6 +9,14 @@ router.get('/', function(req, res, next) {
     })
 })
 
+router.get('/:id', function(req, res, next) {
+    const id = req.params.id;
+    Projects.find({ _id: id }).populate('leader members').exec((err, result) => {
+        if (err) throw err;
+        res.json(result);
+    })
+})
+
 router.post('/', function(req, res, next) {
     const project = new Projects(req.body);
     project.save();
