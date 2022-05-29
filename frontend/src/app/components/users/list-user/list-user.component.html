@@ -31,7 +31,7 @@
                     <td>
                         <i class="fal fa-info"></i>
                         <i [attr.data-user-id]='user._id' class="role-button fal fa-pencil"></i>
-                        <i class="delete-button fal fa-times"></i>
+                        <i [attr.data-user-id]='user._id' class="delete-button fal fa-times"></i>
                     </td>
                 </tr>
             </tbody>
@@ -39,11 +39,14 @@
     </div>
 </div>
 
-<div *ngIf="statusModal">
-    <app-add-user (hideModal)="hideModal($event)"></app-add-user>
+<div *ngIf="addStatusModal">
+    <app-add-user (hideModal)="hideAddModal($event)"></app-add-user>
 </div>
 
 <div *ngIf="updateModalStatus">
-    <!-- (hideModal)="hideModal($event)" -->
     <app-update-user [userId]="userId" (hideUpdate)="hideUpdateModal($event)" ></app-update-user>
+</div>
+
+<div *ngIf="deleteModalStatus">
+    <app-delete-user [userId]="userId" (hideDelete)="hideDeleteModal($event)" ></app-delete-user>
 </div>

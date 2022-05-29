@@ -56,7 +56,14 @@ router.patch('/:id', async function(req, res, next) {
     await Users.findOneAndUpdate({ _id: id }, {
         $set: req.body
     }).then(() => {
-        res.send({ 'message': 'updated successfully'});
+        res.send({ 'message': 'updated successfully' });
+    });
+})
+// update user
+router.delete('/:id', async function(req, res, next) {
+    const id = req.params.id;
+    await Users.findOneAndRemove({ _id: id }).then(() => {
+        res.send({ 'message': 'delete successfully' });
     });
 })
 

@@ -15,6 +15,10 @@ export class UsersService {
         return this.WebRequestService.get(`users/${id}`)
     }
 
+    deleteUser(id: string) {
+        return this.WebRequestService.delete(`users/${id}`)
+    }
+
     updateUser(id: string, payload: Object) {
         return this.WebRequestService.patch(`users/${id}`, payload)
     }

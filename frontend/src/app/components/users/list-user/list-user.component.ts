@@ -13,8 +13,9 @@ export class ListUserComponent implements OnInit {
     // receive component & data from header
     component: string | undefined;
     data: string = '';
-    statusModal: boolean = false;
+    addStatusModal: boolean = false;
     updateModalStatus: boolean = false;
+    deleteModalStatus: boolean = false;
     userId: string | undefined;
     constructor(private UsersService: UsersService, private Data: ShareDataService) {
     }
@@ -37,13 +38,13 @@ export class ListUserComponent implements OnInit {
         }
     }
     changeStatus() {
-        this.statusModal = !this.statusModal;
+        this.addStatusModal = !this.addStatusModal;
     }
     ngOnInit() {
         this.Data.currentComponent.subscribe(component => this.component = component);
         this.getAllUser();
         this.closeModalClick();
-        this.updateUser();
+        this.updateAndDeleteUser();
         // this.filterRole();
     }
     getAllUser() {
@@ -62,7 +63,7 @@ export class ListUserComponent implements OnInit {
     filterName() {
         this.listUser = this.listUserTemp.filter(user => user.firstName.toLowerCase( ).includes(this.data.toLowerCase( )))
     }
-    hideModal(status: boolean) {
+    hideAddModal(status: boolean) {
         if (status) {
             this.changeStatus();
             this.getAllUser();
@@ -77,13 +78,20 @@ export class ListUserComponent implements OnInit {
             if (target.matches('.update-user.overlay-close') || target.matches('.update-user.modal.overlay.active')) {
                 this.updateModalStatus = !this.updateModalStatus;
             }
+            if (target.matches('.delete-user.overlay-close') || target.matches('.delete-user.modal.overlay.active') || target.matches('.btn.delete-user')) {
+                this.deleteModalStatus = !this.deleteModalStatus;
+            }
         })
     }
-    updateUser() {
+    updateAndDeleteUser() {
         document.addEventListener('click', e => {
             const target = e.target as HTMLElement;
             if (target.matches('.role-button')) {
                 this.updateModalStatus = !this.updateModalStatus;
+                this.userId = target.getAttribute('data-user-id')!;
+            }
+            if (target.matches('.delete-button')) {
+                this.deleteModalStatus = !this.deleteModalStatus;
                 this.userId = target.getAttribute('data-user-id')!;
             }
         })
@@ -91,6 +99,12 @@ export class ListUserComponent implements OnInit {
     hideUpdateModal(status: boolean) {
         if (status) {
             this.updateModalStatus = !this.updateModalStatus;
+            this.getAllUser();
+        }
+    }
+    hideDeleteModal(status: boolean) {
+        if (status) {
+            this.deleteModalStatus = !this.deleteModalStatus;
             this.getAllUser();
         }
     }

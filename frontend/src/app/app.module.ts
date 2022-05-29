@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { InfoUserComponent } from './components/users/info-user/info-user.component';
 import { UpdateUserComponent } from './components/users/update-user/update-user.component';
+import { DeleteUserComponent } from './components/users/delete-user/delete-user.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { UpdateUserComponent } from './components/users/update-user/update-user.
         AddUserComponent,
         InfoUserComponent,
         UpdateUserComponent,
+        DeleteUserComponent,
     ],
     imports: [
         BrowserModule, 
