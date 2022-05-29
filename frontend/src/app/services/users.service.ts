@@ -14,4 +14,8 @@ export class UsersService {
     getOneUser(id: string) {
         return this.WebRequestService.get(`users/${id}`)
     }
+
+    updateUser(id: string, payload: Object) {
+        return this.WebRequestService.patch(`users/${id}`, payload)
+    }
 }

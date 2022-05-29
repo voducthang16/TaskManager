@@ -30,7 +30,7 @@
                     <td class="bold">{{role(user.role)}}</td>
                     <td>
                         <i class="fal fa-info"></i>
-                        <i class="role-button fal fa-pencil"></i>
+                        <i [attr.data-user-id]='user._id' class="role-button fal fa-pencil"></i>
                         <i class="delete-button fal fa-times"></i>
                     </td>
                 </tr>
@@ -41,4 +41,9 @@
 
 <div *ngIf="statusModal">
     <app-add-user (hideModal)="hideModal($event)"></app-add-user>
+</div>
+
+<div *ngIf="updateModalStatus">
+    <!-- (hideModal)="hideModal($event)" -->
+    <app-update-user [userId]="userId" (hideUpdate)="hideUpdateModal($event)" ></app-update-user>
 </div>

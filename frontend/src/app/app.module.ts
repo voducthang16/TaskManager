@@ -21,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { InfoUserComponent } from './components/users/info-user/info-user.component';
+import { UpdateUserComponent } from './components/users/update-user/update-user.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { InfoUserComponent } from './components/users/info-user/info-user.compon
         HeaderComponent,
         AddUserComponent,
         InfoUserComponent,
+        UpdateUserComponent,
     ],
     imports: [
         BrowserModule, 

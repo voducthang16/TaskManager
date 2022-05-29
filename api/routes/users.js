@@ -50,4 +50,14 @@ router.post('/login', async function (req, res, next) {
     }
 })
 
+// update user
+router.patch('/:id', async function(req, res, next) {
+    const id = req.params.id;
+    await Users.findOneAndUpdate({ _id: id }, {
+        $set: req.body
+    }).then(() => {
+        res.send({ 'message': 'updated successfully'});
+    });
+})
+
 module.exports = router;

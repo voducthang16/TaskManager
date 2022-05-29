@@ -16,6 +16,7 @@ export class RegisterService {
             email,
             password,
             area,
+            role,
             status
         })
     }

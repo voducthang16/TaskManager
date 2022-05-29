@@ -14,8 +14,9 @@ export class ListUserComponent implements OnInit {
     component: string | undefined;
     data: string = '';
     statusModal: boolean = false;
+    updateModalStatus: boolean = false;
+    userId: string | undefined;
     constructor(private UsersService: UsersService, private Data: ShareDataService) {
-
     }
     area(value: string) {
         if (value == 'south') {
@@ -30,7 +31,7 @@ export class ListUserComponent implements OnInit {
         if (value == 0) {
             return 'Quản trị viên';
         } else if (value == 1) {
-            return 'Trưởng nhóm'
+            return 'Nhóm trưởng'
         } else {
             return 'Nhân viên'
         }
@@ -42,6 +43,7 @@ export class ListUserComponent implements OnInit {
         this.Data.currentComponent.subscribe(component => this.component = component);
         this.getAllUser();
         this.closeModalClick();
+        this.updateUser();
         // this.filterRole();
     }
     getAllUser() {
@@ -69,10 +71,28 @@ export class ListUserComponent implements OnInit {
     closeModalClick() {
         document.addEventListener('click', e => {
             const target = e.target as HTMLElement;
-            if (target.matches('.overlay-close') || target.matches('.modal.overlay.active')) {
+            if (target.matches('.add-user.overlay-close') || target.matches('.add-user.modal.overlay.active')) {
                 this.changeStatus()
             }
+            if (target.matches('.update-user.overlay-close') || target.matches('.update-user.modal.overlay.active')) {
+                this.updateModalStatus = !this.updateModalStatus;
+            }
         })
+    }
+    updateUser() {
+        document.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (target.matches('.role-button')) {
+                this.updateModalStatus = !this.updateModalStatus;
+                this.userId = target.getAttribute('data-user-id')!;
+            }
+        })
+    }
+    hideUpdateModal(status: boolean) {
+        if (status) {
+            this.updateModalStatus = !this.updateModalStatus;
+            this.getAllUser();
+        }
     }
     // filterRole() {
     //     const nodeList = document.querySelectorAll('.role-tab');
