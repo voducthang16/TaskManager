@@ -70,6 +70,9 @@ export class ListTaskAdminComponent implements OnInit {
             if (target.matches('.update-task.overlay-close') || target.matches('.update-task.modal.overlay.active')) {
                 this.updateTaskStatus = !this.updateTaskStatus;
             }
+            if (target.matches('.delete-task.overlay-close') || target.matches('.delete-task.modal.overlay.active') || target.matches('.btn.delete-task')) {
+                this.deleteTaskStatus = !this.deleteTaskStatus;
+            }
         })
     }
     updateAndDeleteTask() {
@@ -88,6 +91,12 @@ export class ListTaskAdminComponent implements OnInit {
     hideUpdateModal(status: boolean) {
         if (status) {
             this.updateTaskStatus = !this.updateTaskStatus;
+            this.getAllTasks();
+        }
+    }
+    hideDeleteModal(status: boolean) {
+        if (status) {
+            this.deleteTaskStatus = !this.deleteTaskStatus;
             this.getAllTasks();
         }
     }

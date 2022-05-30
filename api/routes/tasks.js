@@ -38,6 +38,14 @@ router.patch('/:id', async function(req, res, next) {
     });
 })
 
+// delete task
+router.delete('/:id', async function(req, res, next) {
+    const id = req.params.id;
+    await Tasks.findOneAndRemove({ _id: id }).then(() => {
+        res.send({ 'Message': 'Delete successfully' });
+    });
+})
+
 router.post('/', function(req, res, next) {
     const task = new Tasks(req.body);
     task.save();

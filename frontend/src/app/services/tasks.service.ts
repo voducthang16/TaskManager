@@ -12,15 +12,19 @@ export class TasksService {
     }
 
     getTaskListByProjectId(id: string) {
-        return this.WebRequestService.get(`tasks/${id}`)
+        return this.WebRequestService.get(`tasks/${id}`);
     }
 
     getTaskDetail(id: string) {
-        return this.WebRequestService.get(`tasks/detail/${id}`)
+        return this.WebRequestService.get(`tasks/detail/${id}`);
     }
 
     updateTask(id: string, payload: Object) {
-        return this.WebRequestService.patch(`tasks/${id}`, payload)
+        return this.WebRequestService.patch(`tasks/${id}`, payload);
+    }
+
+    deleteTask(id: string) {
+        return this.WebRequestService.delete(`tasks/${id}`);
     }
 
     createTask(projectId: string, name: string, describe: string, memberId: string, 

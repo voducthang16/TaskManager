@@ -26,6 +26,7 @@ import { DeleteUserComponent } from './components/users/delete-user/delete-user.
 import { UpdateProjectComponent } from './components/projects/update-project/update-project.component';
 import { DeleteProjectComponent } from './components/projects/delete-project/delete-project.component';
 import { UpdateTaskComponent } from './components/tasks/update-task/update-task.component';
+import { DeleteTaskComponent } from './components/tasks/delete-task/delete-task.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { UpdateTaskComponent } from './components/tasks/update-task/update-task.
         UpdateProjectComponent,
         DeleteProjectComponent,
         UpdateTaskComponent,
+        DeleteTaskComponent,
     ],
     imports: [
         BrowserModule, 
