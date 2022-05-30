@@ -76,6 +76,9 @@ export class ListProjectAdminComponent implements OnInit {
             if (target.matches('.overlay-close.update-project') || target.matches('.modal.overlay.active.update-project')) {
                 this.updateModalStatus = !this.updateModalStatus;
             }
+            if (target.matches('.overlay-close.delete-project') || target.matches('.modal.overlay.active.delete-project') || target.matches('.btn.delete-project')) {
+                this.deleteModalStatus = !this.deleteModalStatus;
+            }
         })
     }
 
@@ -100,6 +103,12 @@ export class ListProjectAdminComponent implements OnInit {
     hideUpdateModal(status: boolean) {
         if (status) {
             this.updateModalStatus = !this.updateModalStatus;
+            this.getAllProject()
+        }
+    }
+    hideDeleteModal(status: boolean) {
+        if (status) {
+            this.deleteModalStatus = !this.deleteModalStatus;
             this.getAllProject()
         }
     }

@@ -24,6 +24,7 @@ import { InfoUserComponent } from './components/users/info-user/info-user.compon
 import { UpdateUserComponent } from './components/users/update-user/update-user.component';
 import { DeleteUserComponent } from './components/users/delete-user/delete-user.component';
 import { UpdateProjectComponent } from './components/projects/update-project/update-project.component';
+import { DeleteProjectComponent } from './components/projects/delete-project/delete-project.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { UpdateProjectComponent } from './components/projects/update-project/upd
         UpdateUserComponent,
         DeleteUserComponent,
         UpdateProjectComponent,
+        DeleteProjectComponent,
     ],
     imports: [
         BrowserModule, 

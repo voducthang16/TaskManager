@@ -31,4 +31,8 @@ export class ProjectsService {
     updateProject(id: string, payload: Object) {
         return this.WebRequestService.patch(`projects/${id}`, payload)
     }
+
+    deleteProject(id: string) {
+        return this.WebRequestService.delete(`projects/${id}`)
+    }
 }

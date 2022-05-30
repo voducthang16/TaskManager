@@ -52,3 +52,7 @@
 <div *ngIf="updateModalStatus">
     <app-update-project [id]="projectId" (hideUpdate)="hideUpdateModal($event)"></app-update-project>
 </div>
+
+<div *ngIf="deleteModalStatus">
+    <app-delete-project [id]="projectId" (hideDelete)="hideDeleteModal($event)"></app-delete-project>
+</div>
