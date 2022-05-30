@@ -15,6 +15,14 @@ export class TasksService {
         return this.WebRequestService.get(`tasks/${id}`)
     }
 
+    getTaskDetail(id: string) {
+        return this.WebRequestService.get(`tasks/detail/${id}`)
+    }
+
+    updateTask(id: string, payload: Object) {
+        return this.WebRequestService.patch(`tasks/${id}`, payload)
+    }
+
     createTask(projectId: string, name: string, describe: string, memberId: string, 
         priority: number, status: number) {
         return this.WebRequestService.post('tasks', {

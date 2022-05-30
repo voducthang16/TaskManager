@@ -32,8 +32,8 @@
                     <td>{{task.priority}}</td>
                     <td>
                         <i class="fal fa-info"></i>
-                        <i class="role-button fal fa-pencil"></i>
-                        <i class="delete-button fal fa-times"></i>
+                        <i [attr.data-task-id]="task._id" class="role-button fal fa-pencil"></i>
+                        <i [attr.data-task-id]="task._id" class="delete-button fal fa-times"></i>
                     </td>
                 </tr>
             </tbody>
@@ -44,3 +44,12 @@
 <div *ngIf="addTaskStatus">
     <app-add-task (hideModal)="hideModal($event)"></app-add-task>
 </div>
+
+<div *ngIf="updateTaskStatus">
+    <!-- (hideModal)="hideModal($event)" -->
+    <app-update-task [taskId]="taskId" (hideUpdate)="hideUpdateModal($event)" ></app-update-task>
+</div>
+
+<!-- <div *ngIf="addTaskStatus">
+    <app-add-task (hideModal)="hideModal($event)"></app-add-task>
+</div> -->

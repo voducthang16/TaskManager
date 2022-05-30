@@ -20,6 +20,9 @@ export class ListTaskAdminComponent implements OnInit {
     listTaskTemp: Tasks[] = [];
     listTask: Tasks[] = []
     addTaskStatus: boolean = false;
+    updateTaskStatus: boolean = false;
+    deleteTaskStatus: boolean = false;
+    taskId: string | undefined;
     changeTaskStatus() {
         this.addTaskStatus = !this.addTaskStatus;
     }
@@ -36,6 +39,7 @@ export class ListTaskAdminComponent implements OnInit {
 
         this.getAllTasks();
         this.closeTaskClick();
+        this.updateAndDeleteTask();
     }
     // run when value of component is changed
     ngDoCheck() {
@@ -60,9 +64,31 @@ export class ListTaskAdminComponent implements OnInit {
     closeTaskClick() {
         document.addEventListener('click', e => {
             const target = e.target as HTMLElement;
-            if (target.matches('.overlay-close') || target.matches('.modal.overlay.active')) {
+            if (target.matches('.add-task.overlay-close') || target.matches('.add-task.modal.overlay.active')) {
                 this.changeTaskStatus()
             }
+            if (target.matches('.update-task.overlay-close') || target.matches('.update-task.modal.overlay.active')) {
+                this.updateTaskStatus = !this.updateTaskStatus;
+            }
         })
+    }
+    updateAndDeleteTask() {
+        document.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (target.matches('.role-button')) {
+                this.updateTaskStatus = !this.updateTaskStatus;
+                this.taskId = target.getAttribute('data-task-id')!;
+            }
+            if (target.matches('.delete-button')) {
+                this.deleteTaskStatus = !this.deleteTaskStatus;
+                this.taskId = target.getAttribute('data-task-id')!;
+            }
+        })
+    }
+    hideUpdateModal(status: boolean) {
+        if (status) {
+            this.updateTaskStatus = !this.updateTaskStatus;
+            this.getAllTasks();
+        }
     }
 }

@@ -19,6 +19,25 @@ router.get('/:id', function(req, res, next) {
     })
 })
 
+// get task detail
+router.get('/detail/:id', function(req, res, next) {
+    const id = req.params.id;
+    Tasks.find({ _id: id }).populate('projectId memberId').exec((err, result) => {
+        if (err) throw err;
+        res.json(result);
+    })
+})
+
+// update task
+router.patch('/:id', async function(req, res, next) {
+    const id = req.params.id;
+    await Tasks.findOneAndUpdate({ _id: id }, {
+        $set: req.body
+    }).then(() => {
+        res.send({ 'Message': 'Updated successfully' });
+    });
+})
+
 router.post('/', function(req, res, next) {
     const task = new Tasks(req.body);
     task.save();
