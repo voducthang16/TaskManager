@@ -23,4 +23,14 @@ router.post('/', function(req, res, next) {
     res.send(project);
 })
 
+// update user
+router.patch('/:id', async function(req, res, next) {
+    const id = req.params.id;
+    await Projects.findOneAndUpdate({ _id: id }, {
+        $set: req.body
+    }).then(() => {
+        res.send({ 'Message': 'Updated successfully' });
+    });
+})
+
 module.exports = router;

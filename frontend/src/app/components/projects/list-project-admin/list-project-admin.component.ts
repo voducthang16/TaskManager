@@ -22,9 +22,12 @@ export class ListProjectAdminComponent implements OnInit {
     // list project
     listProject: Projects[] = [];
     listProjectTemp: Projects[] = [];
+    updateModalStatus: boolean = false;
+    deleteModalStatus: boolean = false;
     ngOnInit(): void {
         this.closeProjectClick();
         this.getAllProject();
+        this.updateAndDeleteProject();
         this.Data.currentComponent.subscribe(component => this.component = component);
     };
     // run when value of component is changed
@@ -70,6 +73,9 @@ export class ListProjectAdminComponent implements OnInit {
             if (target.matches('.overlay-close.detail') || target.matches('.modal.overlay.active.detail')) {
                 this.projectDetailStatus = !this.projectDetailStatus;
             }
+            if (target.matches('.overlay-close.update-project') || target.matches('.modal.overlay.active.update-project')) {
+                this.updateModalStatus = !this.updateModalStatus;
+            }
         })
     }
 
@@ -77,5 +83,24 @@ export class ListProjectAdminComponent implements OnInit {
     getProjectId(e: any) {
         this.projectDetailStatus = !this.projectDetailStatus;
         this.projectId = e.target.attributes.id.nodeValue;
+    }
+    updateAndDeleteProject() {
+        document.addEventListener('click', e => {
+            const target = e.target as HTMLElement;
+            if (target.matches('.role-button')) {
+                this.updateModalStatus = !this.updateModalStatus;
+                this.projectId = target.getAttribute('data-project-id')!;
+            }
+            if (target.matches('.delete-button')) {
+                this.deleteModalStatus = !this.deleteModalStatus;
+                this.projectId = target.getAttribute('data-project-id')!;
+            }
+        })
+    }
+    hideUpdateModal(status: boolean) {
+        if (status) {
+            this.updateModalStatus = !this.updateModalStatus;
+            this.getAllProject()
+        }
     }
 }

@@ -18,11 +18,12 @@ import { ListTaskAdminComponent } from './components/tasks/list-task-admin/list-
 import { AddTaskComponent } from './components/tasks/add-task/add-task.component';
 import { ProjectDetailComponent } from './components/projects/project-detail/project-detail.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { InfoUserComponent } from './components/users/info-user/info-user.component';
 import { UpdateUserComponent } from './components/users/update-user/update-user.component';
 import { DeleteUserComponent } from './components/users/delete-user/delete-user.component';
+import { UpdateProjectComponent } from './components/projects/update-project/update-project.component';
 
 @NgModule({
     declarations: [
@@ -45,12 +46,14 @@ import { DeleteUserComponent } from './components/users/delete-user/delete-user.
         InfoUserComponent,
         UpdateUserComponent,
         DeleteUserComponent,
+        UpdateProjectComponent,
     ],
     imports: [
         BrowserModule, 
         AppRoutingModule, 
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

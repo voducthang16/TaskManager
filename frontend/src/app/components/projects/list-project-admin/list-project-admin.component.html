@@ -15,7 +15,7 @@
                 <tr>
                     <th width="5%">#</th>
                     <th width="20%">Tên</th>
-                    <th width="15%">Trưởng nhóm</th>
+                    <th width="15%">Nhóm trưởng</th>
                     <th width="16%">Thành viên</th>
                     <th width="22%">Thời gian</th>
                     <th width="12%">Tiền</th>
@@ -32,8 +32,8 @@
                     <td>{{project.price | currency:'VND'}}</td>
                     <td>
                         <i (click)="getProjectId($event)" id="{{project._id}}" class="fal fa-info"></i>
-                        <i class="role-button fal fa-pencil"></i>
-                        <i class="delete-button fal fa-times"></i>
+                        <i [attr.data-project-id]="project._id" class="role-button fal fa-pencil"></i>
+                        <i [attr.data-project-id]="project._id" class="delete-button fal fa-times"></i>
                     </td>
                 </tr>
             </tbody>
@@ -47,4 +47,8 @@
 
 <div *ngIf="projectDetailStatus">
     <app-project-detail [id]="projectId"></app-project-detail>
+</div>
+
+<div *ngIf="updateModalStatus">
+    <app-update-project [id]="projectId" (hideUpdate)="hideUpdateModal($event)"></app-update-project>
 </div>

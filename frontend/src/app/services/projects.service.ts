@@ -27,4 +27,8 @@ export class ProjectsService {
             status
         })
     }
+
+    updateProject(id: string, payload: Object) {
+        return this.WebRequestService.patch(`projects/${id}`, payload)
+    }
 }
