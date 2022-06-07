@@ -16,16 +16,9 @@ export class AddUserComponent implements OnInit {
     ngOnInit(): void {}
     listAreas: Areas[] = this.AppComponent.listAreas;
     @Output () hideModal = new EventEmitter<boolean>();
-    addUser(e: any) {
-        e.preventDefault();
-        const lastName = <HTMLInputElement>document.querySelector('#last-name');
-        const firstName = <HTMLInputElement>document.querySelector('#first-name');
-        const email = <HTMLInputElement>document.querySelector('#email');
-        const area = <HTMLSelectElement>document.querySelector('#area');
-        const role = <HTMLSelectElement>document.querySelector('#role');
-        const status: number = 1;
-        const password: string = 'default'
-        this.RegisterService.createUser(lastName.value, firstName.value, email.value, password, area.value, +role.value, status)
+
+    onSubmit(form: any) {
+        this.RegisterService.createUser(form.lastName, form.firstName, form.email, 'default', form.area, +form.role, 1)
         .subscribe(() => {
             alert('Add User Successfully');
             this.hideModal.emit(true);
