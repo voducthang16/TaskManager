@@ -4,6 +4,7 @@ import { Users } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { TasksService} from 'src/app/services/tasks.service';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
     selector: 'app-add-task',
     templateUrl: './add-task.component.html',
@@ -13,9 +14,9 @@ export class AddTaskComponent implements OnInit {
     constructor(
         private UsersService: UsersService,
         private ProjectsService: ProjectsService,
-        private TasksService: TasksService
+        private TasksService: TasksService,
+        private fb: FormBuilder
     ) {
-
     }
     @Output () hideModal = new EventEmitter<boolean>();
     listProject: Projects[] = [];
@@ -27,16 +28,34 @@ export class AddTaskComponent implements OnInit {
         this.ProjectsService.getAllProject().subscribe((list: any) => {
             this.listProject = list;
         })
+        this.addTaskForm = this.fb.group({
+            name: '',
+            describe: '',
+            project: '',
+            member: '',
+            priority: '',
+            status: ''
+        })
     }
-    createTask(e: any) {
-        e.preventDefault();
-        const name = <HTMLInputElement>document.querySelector('#name');
-        const describe = <HTMLInputElement>document.querySelector('#describe');
-        const project =  <HTMLSelectElement>document.querySelector('#project');
-        const member =  <HTMLSelectElement>document.querySelector('#member');
-        const priority = <HTMLInputElement>document.querySelector('#priority');
-        const status =  <HTMLInputElement>document.querySelector('input[name="status"]:checked');
-        return this.TasksService.createTask(project.value, name.value, describe.value, member.value, +priority.value, +status.value)
+    // getValueForm() {
+    //     this.addTaskForm = this.fb.group({
+    //         name: ['', [Validators.required]],
+    //         describe: ['', [Validators.required,]],
+    //         project: ['', [Validators.required]],
+    //         member: ['', [Validators.required]],
+    //         priority: ['', [Validators.required]],
+    //         status: ['0', [Validators.required]],
+    //     })
+    // }
+    addTaskForm!: FormGroup;
+    onSubmit() {
+        const name = this.addTaskForm.value.name
+        const describe = this.addTaskForm.value.describe
+        const project =  this.addTaskForm.value.project
+        const member =  this.addTaskForm.value.member
+        const priority = this.addTaskForm.value.priority
+        const status =  this.addTaskForm.value.status
+        return this.TasksService.createTask(project, name, describe, member, +priority, +status)
         .subscribe(() => {
             alert('Create Task Successfully');
             this.hideModal.emit(true);
